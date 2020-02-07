@@ -20,6 +20,7 @@ def leer_archivo(archivo):
     Texto_Limpio = " ".join(Renglones)
     return Texto_Limpio
     '''
+    
 def contar_palabras(texto):
     Palabras = texto.split(" ")
     Diccionario = dict()
@@ -44,19 +45,14 @@ def leer_stopwords(archivo):
         with open(archivo,"r") as fh:
             lista = fh.readlines()
         lista_palabras = [palabra.strip("\n") for palabra in lista]
-            '''
-            for palabra in lista:
-                p = palabra.strip("\n")
-                lista.append(p)
-            '''
+        return set(lista_palabras)
     except:
-        lista_palabras = []
-    return set(lista_palabras)
+        return set()
 
-def limpia_diccionario(dp,set):
+def limpia_diccionario(dp,set_stop):
     ndp = {}
     for k,v in dp.items():
-        if k.lower() not in set:
+        if k.lower() not in set_stop:
             ndp[k] = v
     return ndp
 
@@ -64,8 +60,10 @@ def limpia_diccionario(dp,set):
 def main(archivo, minimo):
     texto = leer_archivo(archivo)
     dip = contar_palabras(texto)
+    set_stop = leer_stopwords("/home/cassiopea/josenoriega/spanish_stopwords.txt")
+    ndip = limpia_diccionario(dip,set_stop)
     #print(dip)
-    imprime_diccionario(dip,minimo)
+    imprime_diccionario(ndip,minimo)
 #--------------------------------
 
 #3 Ejecucion de main
