@@ -2,19 +2,20 @@
 import lector
 import argparse
 
-def porcentaje_palabras(archivo):
+def porcentaje_palabras_stop(archivo):
     texto = lector.leer_archivo(archivo)
     diccionario = lector.contar_palabras(texto)
     tam_texto = len(texto)
     tam_dip = len(diccionario)
     tam_resta = tam_texto - tam_dip
-    tam_porcentaje = (tamz_resta*100)/texto
+    tam_porcentaje = (tam_resta*100)/tam_texto
     return tam_porcentaje
 
 
 def main(archivo):
     porcentaje = porcentaje_palabras(archivo)
-    print(porcentaje,"%")
+    print(porcentaje,"% Stop Words")
+    print((100-porcentaje),"% Palabras clave")
 
 
 if __name__ == "__main__":
