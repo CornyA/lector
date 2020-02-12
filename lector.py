@@ -30,7 +30,7 @@ def contar_palabras(texto):
             Diccionario[p] += 1
         else:
             Diccionario[p] = 1
-    del(Diccionario[""])
+    #del(Diccionario[""])
     return Diccionario
     
 def imprime_diccionario(dp,minimo):
