@@ -6,7 +6,7 @@ import contar_palabras
 def obten_cita(texto,inicio,cuenta):
     lista = texto.split(" ")
     longitud = len(lista)
-    if(longitud+cuenta)< longitud:
+    if(inicio+cuenta)< longitud:
         lista_palabras = lista[inicio:inicio+cuenta]
         cita = " ".join(lista_palabras)
     else:
@@ -14,11 +14,13 @@ def obten_cita(texto,inicio,cuenta):
     return cita
     
 def main(archivo,archivo_stop,inicio,cuenta):
+     
      texto = lector.leer_archivo(archivo)
      cita = obten_cita(texto,inicio,cuenta)
      print("cita:", cita)
-     stopwords = lector.leer_stopwords(archivo)
-     contar_palabras.contar(cuenta,stopwords)
+     stopwords = lector.leer_stopwords(archivo_stop)
+     contar_palabras.contar(cita,stopwords)
+     #contar_palabras.porcentaje_palabras(cita,stopwords)
      
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
