@@ -17,7 +17,7 @@ def porcentaje_palabras_stop(archivo):
     print("Palabras stop:        ",tam_stop,"| Porcentaje = ",porc_stop, "%")
     print("Diccionario(clave):   ",tam_dip,"| Porcentaje = ",porc_clave, "%")
 '''    
-    
+ 
 def porcentaje_palabras(archivo,set_stop):
     texto = lector.leer_archivo(archivo)
     lista_palabras = texto.split(" ")
@@ -47,6 +47,17 @@ def porcentaje_palabras(archivo,set_stop):
     print("Palabras en el texto: ",tam_texto,"| Porcentaje = 100%")
     print("Palabras clave:       ",sumapc,"| Porcentaje = ",porc_clave, "%")
     print("Palabras stop:        ",sumaps,"| Porcentaje = ",porc_stop, "%")
+    pcu = contar_palabras_unicas(dpc)
+    pcs = contar_palabras_unicas(dps)
+    total_pu = pcu + pcs
+    print("---------------")
+    print("Total palabras unicas:", total_pu)
+    print("Palabras clave unicas:", pcu, pcu/total_pu)
+    print("Palabras stop  unicas:", pcs, pcs/total_pu)
+    
+def contar_palabras_unicas(dp):
+    total = len(set(dp))
+    return total
     
     
 def contar_repeticiones(diccionario):
@@ -55,6 +66,41 @@ def contar_repeticiones(diccionario):
         suma += v
     return suma
     
+def contar(texto, stopwords):
+    lista_palabras = texto.split(" ")
+    total_palabras = len(lista_palabras)
+    dpc = dict() #dicc.palabras clave
+    dps = dict() #dicc.palabras stop
+
+    for palabra in lista_palabras:
+        p = palabra.lower().strip(".,")
+        if p in stopwords:
+           if p in dps:
+              dps[p] += 1 #sumamos 1
+           else: 
+              dps[p] = 1  #creamos
+        else:
+           if p in dpc:
+              dpc[p] += 1 #sumamos
+           else:
+              dpc[p] = 1  #creamos
+    sumapc = contar_repeticiones(dpc)
+    sumaps = contar_repeticiones(dps)
+    print("Total de palabras:",total_palabras)
+    print("Palabras clave:",sumapc, sumapc/total_palabras)
+    print("Palabras stop:",sumaps, sumaps/total_palabras)
+    pcu = contar_palabras_unicas(dpc)
+    pcs = contar_palabras_unicas(dps)
+    total_pu = pcu + pcs
+    print("---------------")
+    print("Total palabras unicas:", total_pu)
+    print("Palabras clave unicas:", pcu, pcu/total_pu)
+    print("Palabras stop  unicas:", pcs, pcs/total_pu)
+    
+def contar_palabras_unicas(dp):
+	  total = len(set(dp))
+	  return total
+
 def palabras_unicas(archivo):
     texto = lector.leer_archivo(archivo)
     diccionario = lector.contar_palabras(texto)
@@ -81,13 +127,12 @@ def palabras_unicas(archivo):
 
     
 
-def main(archivo):
+def main(archivo,arc_sw):
     print("----------------Porcentaje de palabras-------------")
     #porcentaje = porcentaje_palabras_stop(archivo)
-    porcentaje_palabras(archivo,"/home/cassiopea/josenoriega/spanish_stopwords.txt")
+    porcentaje_palabras(archivo,arc_sw)
     print("---------------Porcentaje de palabras unicas-------")
     palabras_unicas(archivo)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
