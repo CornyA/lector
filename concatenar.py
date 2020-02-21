@@ -11,7 +11,7 @@ def escribir_archivo(lista_archivos,nuevo_fichero):
     try:
         with open(nuevo_fichero,'w', encoding='utf-8') as fw:
             #texto = lector.leer_archivo(archivo)
-            texto_limpio = " ".join(textos)
+            texto_limpio = "\n".join(textos)
             nuevo_fichero = fw.write(texto_limpio)
     except:
         print("Hubo un error")
