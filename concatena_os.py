@@ -2,20 +2,22 @@
 import argparse
 import lector
 import os
+import concatenar
 
-def get_ListaEp(folder,inicia,termina):
-    lista_archivos = [archivo for archivo in os.listdir(folder) if archivo.startswith(inicia) and archivo.endswith(termina)
+def get_listaEp(folder,inicia,termina):
+    lista_archivos = [archivo for archivo in os.listdir(folder) if archivo.startswith(inicia) and archivo.endswith(termina)]
     return lista_archivos
     
-def escribir_episodios(lista,fichero):
-    
-    
+def get_ruta(folder,lista):
+    lista_rutas = [os.path.join(folder,ep) for ep in lista]
+    return lista_rutas
 
 def main(folder,inicia,termina,fichero):
-    lista_ep = get_ListaEp(folder,inicia,termina)
-    
+    lista_ep = get_listaEp(folder,inicia,termina)
+    lista_rutas = get_ruta(folder,lista_ep)
+    concatenar.escribir_archivo(lista_rutas,fichero)
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--folder", dest="folder", help="Ruta de carpeta", required=True)
     parser.add_argument("-i", "--inicia", dest="inicia", help="Nombre del archivo buscado", required=True)
