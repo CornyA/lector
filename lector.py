@@ -5,6 +5,9 @@ import argparse
 #2 Funciones
 
 def leer_archivo(archivo):
+    '''Recibe una cadena con el nombre del archivo que se
+       busca leer y regresa una cadena de texto sin saltos
+       de linea.'''
     try:
         with open(archivo,"r") as fh:
             texto = fh.read()
@@ -13,15 +16,11 @@ def leer_archivo(archivo):
     except:
         texto_limpio = ""
     return texto_limpio
-    '''
-    Lector = open(archivo,"r")
-    Texto = Lector.read()
-    Renglones = Texto.splitlines()
-    Texto_Limpio = " ".join(Renglones)
-    return Texto_Limpio
-    '''
     
 def contar_palabras(texto):
+    '''Recibe una cadena de cualquier tamaño y regresa un
+       diccionario con el numero de palabras repetidas sin
+       espacios vacios.'''
     Palabras = texto.split(" ")
     Diccionario = dict()
     for palabra in Palabras:
@@ -30,10 +29,12 @@ def contar_palabras(texto):
             Diccionario[p] += 1
         else:
             Diccionario[p] = 1
-    #del(Diccionario[""])
+    del(Diccionario[""])
     return Diccionario
     
 def imprime_diccionario(dp,minimo):
+    '''Recibe un diccionario de palabras y un minimo de repeticiones
+       de palabras e imprime cada palabra con su numero de repeticiones.'''
     lista = [(k,v) for k,v in dp.items() if v>=minimo]
     lista_ordenada = sorted(lista, key= lambda x:x[1], reverse=True)
     for tupla in lista_ordenada:
@@ -41,6 +42,8 @@ def imprime_diccionario(dp,minimo):
     return
     
 def leer_stopwords(archivo):
+    '''Recibe una cadena con la ruta del archivo y regresa un
+       set de palabras con las palabras que vienen en el archivo.'''
     try:
         with open(archivo,"r") as fh:
             lista = fh.readlines()
@@ -50,6 +53,10 @@ def leer_stopwords(archivo):
         return set()
 
 def limpia_diccionario(dp,set_stop):
+    '''Recibe un dicionario de palabras y un set de palabras para
+       para remover las palabras del diccionario que estan en el
+       set dado y regresa un nuevo diccionario sin las palabras que
+       estan en el set.'''
     ndp = {}
     for k,v in dp.items():
         if k.lower() not in set_stop:
@@ -62,7 +69,6 @@ def main(archivo, minimo):
     dip = contar_palabras(texto)
     set_stop = leer_stopwords("/home/cassiopea/josenoriega/spanish_stopwords.txt")
     ndip = limpia_diccionario(dip,set_stop)
-    #print(dip)
     imprime_diccionario(ndip,minimo)
 #--------------------------------
 

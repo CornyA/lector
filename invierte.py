@@ -13,6 +13,9 @@ def invertir(archivo):
     return lista_invertida
 '''
 def invertir(archivo):
+    '''Recibe la ruta del archivo a leer y regresa
+       una lista con las palabras en el texto en orden
+       invertido.'''
     texto = lector.leer_archivo(archivo)
     lista_palabras = texto.split(" ")
     #tam_lista = len(lista_palabras)
@@ -22,6 +25,8 @@ def invertir(archivo):
     return lista_invertida
 
 def escribir_invertido(fichero,lista_invertida):
+    '''Recibe un fichero en el cual se va a escribir un texto
+       y una lista invertida que será la que se escribirá.'''
     texto_invertido = " ".join(lista_invertida)
     try:
         with open(fichero,"w") as fw:
