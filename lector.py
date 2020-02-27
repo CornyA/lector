@@ -7,7 +7,8 @@ import argparse
 def leer_archivo(archivo):
     '''Recibe una cadena con el nombre del archivo que se
        busca leer y regresa una cadena de texto sin saltos
-       de linea.'''
+       de linea.
+    '''
     try:
         with open(archivo,"r") as fh:
             texto = fh.read()
@@ -18,9 +19,10 @@ def leer_archivo(archivo):
     return texto_limpio
     
 def contar_palabras(texto):
-    '''Recibe una cadena de cualquier tamaño y regresa un
+    '''Recibe una cadena de cualquier tamano y regresa un
        diccionario con el numero de palabras repetidas sin
-       espacios vacios.'''
+       espacios vacios.
+    '''
     Palabras = texto.split(" ")
     Diccionario = dict()
     for palabra in Palabras:
@@ -34,7 +36,8 @@ def contar_palabras(texto):
     
 def imprime_diccionario(dp,minimo):
     '''Recibe un diccionario de palabras y un minimo de repeticiones
-       de palabras e imprime cada palabra con su numero de repeticiones.'''
+       de palabras e imprime cada palabra con su numero de repeticiones.
+    '''
     lista = [(k,v) for k,v in dp.items() if v>=minimo]
     lista_ordenada = sorted(lista, key= lambda x:x[1], reverse=True)
     for tupla in lista_ordenada:
@@ -43,7 +46,8 @@ def imprime_diccionario(dp,minimo):
     
 def leer_stopwords(archivo):
     '''Recibe una cadena con la ruta del archivo y regresa un
-       set de palabras con las palabras que vienen en el archivo.'''
+       set de palabras con las palabras que vienen en el archivo.
+    '''
     try:
         with open(archivo,"r") as fh:
             lista = fh.readlines()
@@ -56,7 +60,8 @@ def limpia_diccionario(dp,set_stop):
     '''Recibe un dicionario de palabras y un set de palabras para
        para remover las palabras del diccionario que estan en el
        set dado y regresa un nuevo diccionario sin las palabras que
-       estan en el set.'''
+       estan en el set.
+    '''
     ndp = {}
     for k,v in dp.items():
         if k.lower() not in set_stop:

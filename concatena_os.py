@@ -7,7 +7,8 @@ import concatenar
 def get_listaEp(folder,inicia,termina):
     '''Recibe una cadena con la ruta de una carpeta que se va a buscar,
        una cadena que especifica con que nombre tiene que empezar y
-       una cadena que especifica con que tipo archivo termina(txt,dat,etc).'''
+       una cadena que especifica con que tipo archivo termina(txt,dat,etc).
+    '''
     lista_direcciones = os.listdir(folder)
     lista_txt = [archivo for archivo in lista_direcciones if archivo.endswith(termina)]
     if inicia != None:
@@ -21,7 +22,8 @@ def get_listaEp(folder,inicia,termina):
 def get_ruta(folder,lista):
     '''Recibe una cadena con la ruta de la carpeta y una lista con
        el nombre de los archivos y regresa una lista con la ruta completa
-       del archivo.'''
+       del archivo.
+    '''
     lista_rutas = [os.path.join(folder,ep) for ep in lista]
     return lista_rutas
 

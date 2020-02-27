@@ -22,7 +22,8 @@ def porcentaje_palabras(archivo,set_stop):
     '''Recibe ruta de archivo a leer, y un set que se usará
        para comparar el texto con el. Imprime los porcentajes
        de palabras en un set dado junto con el numero de
-       palabras.'''
+       palabras.
+    '''
     texto = lector.leer_archivo(archivo)
     lista_palabras = texto.split(" ")
     tam_texto = len(lista_palabras) #Numero de palabras
@@ -60,7 +61,8 @@ def porcentaje_palabras(archivo,set_stop):
     print("Palabras stop  unicas:", pcs, pcs/total_pu)
     
 def contar_palabras_unicas(dp):
-    '''Recibe un diccionario de palabras y retorna la longitud de este.'''
+    '''Recibe un diccionario de palabras y retorna la longitud de este.
+    '''
     total = len(set(dp))
     return total
     
@@ -68,7 +70,8 @@ def contar_palabras_unicas(dp):
 def contar_repeticiones(diccionario):
     '''Recibe un diccionario de palabras y va haciendo iteraciones en
        cada palabra y las va sumando para regresar cuantas veces se
-       repitieron todas las palabras.'''
+       repitieron todas las palabras.
+    '''
     suma = 0
     for k,v in diccionario.items():
         suma += v
@@ -78,7 +81,8 @@ def contar(texto, stopwords):
     '''Recibe ruta de archivo a leer, y un set que se usará
        para comparar el texto con el. Imprime los porcentajes
        de palabras en un set dado junto con el numero de
-       palabras.'''
+       palabras.
+    '''
     lista_palabras = texto.split(" ")
     total_palabras = len(lista_palabras)
     dpc = dict() #dicc.palabras clave
@@ -110,14 +114,16 @@ def contar(texto, stopwords):
     print("Palabras stop  unicas:", pcs, pcs/total_pu)
     
 def contar_palabras_unicas(dp):
-    '''Recibe un diccionario de palabras y retorna la longitud de este.'''
+    '''Recibe un diccionario de palabras y retorna la longitud de este.
+    '''
 	  total = len(set(dp))
 	  return total
 
 def palabras_unicas(archivo):
     '''Recibe la ruta de un archivo para comparar con un diccionario
        que se le da en la funcion e imprime los porcentajes de palabras
-       junto al numero de palabras especificas de un documento dado.'''
+       junto al numero de palabras especificas de un documento dado.
+    '''
     texto = lector.leer_archivo(archivo)
     diccionario = lector.contar_palabras(texto)
     set_stopw = lector.leer_stopwords("/home/cassiopea/josenoriega/spanish_stopwords.txt")

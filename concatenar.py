@@ -6,7 +6,8 @@ def escribir_archivo(lista_archivos,nuevo_fichero):
     '''Recibe una lista de con la ruta de los archivos, una cadena
        con el nombre del fichero que se va a escribir y se lee cada
        archivo y lo añade a una lista para al final juntarlos y
-       escribir todos los archivos en el nuevo fichero.'''
+       escribir todos los archivos en el nuevo fichero.
+    '''
     textos = []
     for archivo in lista_archivos:
         texto = lector.leer_archivo(archivo)

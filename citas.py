@@ -7,7 +7,8 @@ def obten_cita(texto,inicio,cuenta):
     '''Recibe una cadena con un texto de cualquier tamaño y
        2 enteros; inicio para saber de donde empezar a contar
        las palabras y cuenta para saber hasta donde detenerse
-       y regresa una cadena desde el inicio hasta cuenta'''
+       y regresa una cadena desde el inicio hasta cuenta.
+    '''
     lista = texto.split(" ")
     longitud = len(lista)
     if(inicio+cuenta)< longitud:

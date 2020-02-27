@@ -6,7 +6,8 @@ import random
 def obtener_palabras_aleatorias(archivo,num_pal):
     '''Recibe la ruta del archivo y el numero de palabras
        aleatorias que se desea extraer del archivo y regresa
-       una lista con las palabras aleatorias obtenidas.'''
+       una lista con las palabras aleatorias obtenidas.
+    '''
     texto = lector.leer_archivo(archivo)
     lista_palabras = texto.split(" ")
     lista_palabras = remover_espacios(lista_palabras)
@@ -20,7 +21,8 @@ def obtener_palabras_aleatorias(archivo,num_pal):
     
 def remover_espacios(lista_palabras):
     '''Recibe una lista de palabras y se regresa una lista
-       sin puntos, comas y espacios.'''
+       sin puntos, comas y espacios.
+    '''
     lista_limpia = [palabra.rstrip(",.") for palabra in lista_palabras if len(palabra)>0]
     return lista_limpia
 
